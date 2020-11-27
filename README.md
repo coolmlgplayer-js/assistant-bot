@@ -16,4 +16,4 @@ To install the bot do the following:
 Then you're done, your bot will run!
 
 # Support
-For support join my [Discord Server](https://discord.gg/dMdDCvmhQT)
+For support join my [Discord Server](https://discord.gg/RWn6Z9aVGj)
