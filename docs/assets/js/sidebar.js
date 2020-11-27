@@ -7,5 +7,5 @@ function newpage(title,link) {
   currentDiv.after(text,); 
 }
 
-newpage("Installing","install.html")
-newpage("Creating Commands","creatingcommands.html")
+newpage("Installing","install")
+newpage("Creating Commands","creatingcommands")
