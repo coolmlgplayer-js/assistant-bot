@@ -8,3 +8,4 @@ function newpage(title,link) {
 }
 
 newpage("Installing","install.html")
+newpage("Creating Commands","creatingcommands.html")
