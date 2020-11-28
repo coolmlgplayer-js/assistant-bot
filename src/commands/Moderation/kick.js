@@ -4,7 +4,7 @@ module.exports = {
     name: 'kick',
     description: 'Kick a member',
     arguments: {
-        required: ['User'],
+        required: ['Member'],
         optional: ['Reason']
     },
     permission: 'Kick Members',
