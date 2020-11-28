@@ -6,6 +6,6 @@ function newpage(title,link) {
   const currentDiv = document.getElementById("documents"); 
   currentDiv.after(text,); 
 }
-
-newpage("Installing","install")
-newpage("Creating Commands","creatingcommands")
+newpage("Download","download");
+newpage("Installing","install");
+newpage("Creating Commands","creatingcommands");
