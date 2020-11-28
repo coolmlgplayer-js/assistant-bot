@@ -2,6 +2,10 @@
 
 # Download
 [Click Here](https://github.com/coolmlgplayer-js/assistant-bot/releases/download/1.0/Assistant.Bot.3.0.Release.1.0.zip) to download Assistant Bot 3.0
+
+# Updating
+To update the bot run `node update.js`
+
 # Documentation
 [Read the documentation for install instructions](https://assistant-bot.coolmlgplayer.me/install)
 
