@@ -4,7 +4,7 @@ module.exports = {
     name: 'ban',
     description: 'Ban a member',
     arguments: {
-        required: ['User'],
+        required: ['Member'],
         optional: ['Reason']
     },
     permission: 'Ban Members',
