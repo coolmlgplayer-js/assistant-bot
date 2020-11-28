@@ -31,7 +31,7 @@ const rl = readline.createInterface({
 function promptUpdate(){
     const updated = [];
     var available = true;
-  rl.question('Would you like to update? Y/N ', async (answer) => {
+  rl.question('Would you like to update? Y/n ', async (answer) => {
     answer = answer.toLowerCase() || answer;
     if(answer !== "n" && answer !=="y") return promptUpdate(true);
     if(answer == "n"){
