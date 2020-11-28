@@ -3,8 +3,7 @@
   "version": "3.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon --ext 'js,json,env' -x 'node index.js || touch index.js'",
-    "update-bot": "node update.js"
+    "start": "npx nodemon --ext 'js,json,env' -x 'node index.js || touch index.js'"
   },
   "keywords": [],
   "author": "coolmlgplayer-js",
