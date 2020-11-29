@@ -3,7 +3,7 @@
   "version": "3.1.0",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon --ext 'js,json,env' -x 'node index.js || touch index.js'"
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "coolmlgplayer-js & FrontlineMist57",
