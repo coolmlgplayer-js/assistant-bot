@@ -154,7 +154,7 @@ request(updateurl, function(error, response, body) {
                                             });
                                             console.log("Update Checker:   Cleanup Complete.");
                                             if(oldchangelog === newChangelog) newChangelog = "No new changes logged";
-                                            console.log(newChangelog);
+                                            console.log(`Changelog: ${newChangelog}`);
                                             console.log("Update Checker:   Starting bot.");
                                             //Start Bot
                                             startbot();
