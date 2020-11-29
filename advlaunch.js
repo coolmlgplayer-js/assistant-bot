@@ -8,7 +8,7 @@ console.log("Update Checker:   Checking for updates.")
 
 ////    Variables    ////
 const repo = "https://github.com/coolmlgplayer-js/assistant-bot/archive/main.zip"
-const updateurl = "https://raw.githubusercontent.com/coolmlgplayer-js/assistant-bot/main/api/latest.txt"
+const updateurl = "https://raw.githubusercontent.com/coolmlgplayer-js/assistant-bot/main/src/information/version.json"
 /////////////////////////
 
 
@@ -17,7 +17,7 @@ const request = require('request');
 const unzipper = require('unzipper');
 const path = require("path");
 const fs = require('fs')
-const { version } = require('./src/information/version.json');
+const { version } = require('./src/information/version.json') || "1.0";
 const readline = require('readline');
 /////////////////////////////////
 
@@ -57,7 +57,7 @@ function writeFileSyncRecursive(filename, content, charset) {
 ////    Get Latest Version    ////
 request(updateurl, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-    const cloudversion = body;
+    const cloudversion = JSON.parse(body).version;
     console.log(`Update Checker:   Running: ${version} - Latest: ${cloudversion}`)
     ////    See if shit needs to be updated    ////
     if (Number(version) < Number(cloudversion)) {
@@ -107,8 +107,11 @@ request(updateurl, function (error, response, body) {
                         var files = getAllFiles("./temp");
                         var checked = 0;
                         files.forEach(function(file){
-												checked++;
+                        checked++;
+                     
+												
                         var fileName = file.slice(24);
+
                         if(fileName == ".env.example" || fileName.startsWith("docs")) return;
                         writeFileSyncRecursive(`./${fileName}`,fs.readFileSync(file,{encoding:'utf8'}));
 												});
