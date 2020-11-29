@@ -109,7 +109,7 @@ request(updateurl, function (error, response, body) {
                         files.forEach(function(file){
 												checked++;
                         var fileName = file.slice(24);
-                        if(fileName == ".env.example" || fileName.startsWith("docs"))
+                        if(fileName == ".env.example" || fileName.startsWith("docs")) return;
                         writeFileSyncRecursive(`./${fileName}`,fs.readFileSync(file,{encoding:'utf8'}));
 												});
 												var interval = setInterval(() => {
