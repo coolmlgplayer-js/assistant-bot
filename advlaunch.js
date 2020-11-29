@@ -8,7 +8,7 @@ console.log("Update Checker:   Checking for updates.")
 
 ////    Variables    ////
 const repo = "https://github.com/coolmlgplayer-js/assistant-bot/archive/main.zip"
-const updateurl = "https://raw.githubusercontent.com/coolmlgplayer-js/assistant-bot/main/src/information/version.json"
+const updateurl = "https://raw.githubusercontent.com/coolmlgplayer-js/assistant-bot/main/package.json"
 /////////////////////////
 
 
@@ -17,12 +17,7 @@ const request = require('request');
 const unzipper = require('unzipper');
 const path = require("path");
 const fs = require('fs')
-var version;
-try{
-	version = require('./src/information/version.json');
-}catch{
-	version = "1.0";
-};
+const { version } = require("./package.json") || "1.0";
 const readline = require('readline');
 /////////////////////////////////
 
