@@ -17,8 +17,11 @@ const unzipper = require('unzipper');
 const path = require("path");
 const fs = require('fs')
 var version;
+var oldchangelog = "No Changelog";
 try {
-    version = require("./src/information/version.json").version;
+    let versionInfo = require("./src/information/version.json");
+    version = versionInfo.version;
+    if(versionInfo.changelog) oldchangelog = versionInfo.changelog
 } catch {
     version = "1.0";
 }
@@ -61,7 +64,10 @@ function writeFileSyncRecursive(filename, content, charset) {
 ////    Get Latest Version    ////
 request(updateurl, function(error, response, body) {
     if (!error && response.statusCode == 200) {
-        const cloudversion = JSON.parse(body).version;
+        const newInfo = JSON.parse(body);
+        const cloudversion = newInfo.version;
+        var newChangelog = "No Changelog";
+        if(newInfo.changelog) newChangelog = newInfo.changelog
         console.log(`Update Checker:   Running: ${version} - Latest: ${cloudversion}`)
         ////    See if shit needs to be updated    ////
         if (Number(version) < Number(cloudversion)) {
@@ -114,22 +120,16 @@ request(updateurl, function(error, response, body) {
 
                                 //  Apply Updates  //
                                 var files = getAllFiles("./temp");
-                                var updated = [];
                                 var checked = 0;
                                 files.forEach(function(file) {
                                     checked++;
 
 
                                     var fileName = file.slice(24);
-                                    let oldData = "";
-                                    if (fs.existsSync(`./${fileName}`)) oldData = fs.readFileSync(`./${fileName}`, {
-                                        encoding: 'utf8'
-                                    });
                                     if (fileName == ".env.example" || fileName.startsWith("docs")) return;
                                     let newData = fs.readFileSync(file, {
                                         encoding: 'utf8'
                                     });
-                                    if (oldData !== newData) updated.push(fileName);
                                     writeFileSyncRecursive(`./${fileName}`, newData);
                                 });
                                 var interval = setInterval(() => {
@@ -153,7 +153,8 @@ request(updateurl, function(error, response, body) {
                                                 if (err) console.log("failed to remove temp.zip");
                                             });
                                             console.log("Update Checker:   Cleanup Complete.");
-                                            if (updated.length > 0) console.log(`Updated Files:\n${updated.join("\n")}`);
+                                            if(oldchangelog === newChangelog) newChangelog = "No new changes logged";
+                                            console.log(newChangelog);
                                             console.log("Update Checker:   Starting bot.");
                                             //Start Bot
                                             startbot();
