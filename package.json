@@ -1,7 +1,7 @@
 {
   "name": "Assistant_Bot",
   "version": "3.1.0",
-  "main": "index.js",
+  "main": "advlaunch.js",
   "scripts": {
     "start": "node advlaunch.js"
   },
