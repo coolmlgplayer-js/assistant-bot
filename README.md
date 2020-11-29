@@ -1,4 +1,4 @@
-# Assistant Bot 3.1.0
+# Assistant Bot 3
 
 # Download
 [Click Here](https://github.com/coolmlgplayer-js/assistant-bot/releases/download/1.0/Assistant.Bot.3.0.Release.1.0.zip) to download Assistant Bot 
