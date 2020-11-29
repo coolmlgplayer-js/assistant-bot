@@ -6,7 +6,17 @@
     "start": "node advlaunch.js"
   },
   "keywords": [],
-  "author": "coolmlgplayer-js & FrontlineMist57",
+  "author": "CoolMLGPlayer",
+  "contributors": [
+  	{
+  		"name": "CoolMLGPlayer",
+  		"url": "https://github.com/coolmlgplayer-js"
+  	},
+  	{
+  		"name": "Front",
+  		"url": "https://github.com/FrontlineMist57"
+  	}
+  ],
   "license": "MIT",
   "dependencies": {
     "axios": "^0.21.0",
