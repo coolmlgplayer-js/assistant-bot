@@ -1,4 +1,4 @@
 {
-    "version": "1.5",
-    "changelog": "Updated changelog function :p"
+    "version": "1.6",
+    "changelog": "Added lock and unlock command"
 }
