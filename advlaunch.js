@@ -106,11 +106,16 @@ request(updateurl, function (error, response, body) {
                         //  Apply Updates  //
                         var files = getAllFiles("./temp");
                         var checked = 0;
+                        var changed = [];
                         files.forEach(function(file){
 												checked++;
                         var fileName = file.slice(24);
                         if(fileName == ".env.example" || fileName.startsWith("docs"))
-                        writeFileSyncRecursive(`./${fileName}`,fs.readFileSync(file,{encoding:'utf8'}));
+                        var oldData = "";
+                        if(fs.exists(`./${fileName}`)) oldData = fs.readFileSync(`./${fileName}`,{encoding:'utf8'});
+                        var newData = fs.readFileSync(file,{encoding:'utf8'});
+                        writeFileSyncRecursive(`./${fileName}`,newData);
+                        changed.push(fileName);
 												});
 												var interval = setInterval(() => {
 													if(checked < files.length) return;
@@ -118,7 +123,7 @@ request(updateurl, function (error, response, body) {
 												
                         //  When Updates Applied...  //
                        
-                        console.log("Update Checker:   Updates Applied.")
+                        console.log("Update Checker:   Updates Applied.");
                         console.log("Update Checker:   Cleaning Up Files.");
                         //  Cleanup Temp Folder  //
                         fs.rmdir('./temp', { recursive: true }, (err) => {
@@ -131,6 +136,7 @@ request(updateurl, function (error, response, body) {
                                     if(err) console.log("failed to remove temp.zip");
                                 });
                                 console.log("Update Checker:   Cleanup Complete.");
+                                console.log(`Updated/New files: ${changed.join("\n")}`);
                                 console.log("Update Checker:   Starting bot.");
                                 //Start Bot
                                 startbot();
