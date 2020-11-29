@@ -17,7 +17,12 @@ const request = require('request');
 const unzipper = require('unzipper');
 const path = require("path");
 const fs = require('fs')
-const { version } = require('./src/information/version.json') || "1.0";
+var version;
+try{
+	version = require('./src/information/version.json');
+}catch{
+	version = "1.0";
+};
 const readline = require('readline');
 /////////////////////////////////
 
