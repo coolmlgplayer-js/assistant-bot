@@ -23,8 +23,14 @@ function restart() {
 }
 
 ////    Embed Function    ////
-function embed(title,description,message){
-    return new discord.MessageEmbed({color: message.guild.me.roles.color ? message.guild.me.roles.color.hexColor : message.guild.me.roles.highest.hexColor, title: title, description: description})
+function sendnormal(description,message){
+    return new discord.MessageEmbed({color: message.guild.me.roles.color ? message.guild.me.roles.color.hexColor : message.guild.me.roles.highest.hexColor, title: "Module Manager", description: description})
+}
+function senderror(description){
+    return new discord.MessageEmbed({color: '#ff5555', title: "Module Manager", description: description})
+}
+function sendconfirm(description){
+    return new discord.MessageEmbed({color: '#99ff99', title: "Module Manager", description: description})
 }
 //////////////////////////////
 
@@ -39,11 +45,11 @@ module.exports = {
         ////////    Install    ////////
         if (args[0].toLowerCase() == "install") {
             //  Check Args //
-            if (args.length > 4) {message.channel.send(embed("Module Manager","Too many arguments",message)); return;}
-            if (args.length < 4) {message.channel.send(embed("Module Manager","Not enough arguments",message)); return;}
+            if (args.length > 4) {message.channel.send(sendnormal("Too many arguments",message)); return;}
+            if (args.length < 4) {message.channel.send(sendnormal("Not enough arguments",message)); return;}
             const repourl = `https://github.com/${args[2]}/archive/${args[3]}.zip`
             const modulename = args[1]
-            message.channel.send(embed("Module Manager",`Attempting to install **${modulename}**\n${repourl}`,message))
+            message.channel.send(sendnormal(`Attempting to install **${modulename}**\n${repourl}`,message))
 
 
 
@@ -67,11 +73,10 @@ module.exports = {
                                 fs.rename(`./src/unloaded/${args[2].split("/")[1]}-${args[3]}`, `./src/unloaded/${modulename}`, function(err) {
                                     if (err) {
                                       console.log(err)
-                                      message.channel.send(embed(`Module Manager`,`Error Installing ${modulename}\n${repourl}\n${err}`,message));
+                                      message.channel.send(senderror(`Error Installing ${modulename}\n${repourl}\n${err}`,message));
                                     } else {
                                         console.log(`Module Handler:    Renamed ${modulename}`);
-                                        message.channel.send(new discord.MessageEmbed({color: '#99ff99', title: `Module Manager`, description: `Successfully Installed **${modulename}**\nTo load this module, run **${prefix}module load ${modulename}**\n${repourl}`}));
-                                        
+                                        message.channel.send(sendconfirm(`Successfully Installed **${modulename}**\nTo load this module, run **${prefix}module load ${modulename}**\n${repourl}`));
                                     }
                                   })
                             })
@@ -88,30 +93,30 @@ module.exports = {
     ////////    Load    ////////
     } else if (args[0].toLowerCase() == "load") {
         //  Check Args //
-        if (args.length > 2) {message.channel.send(embed("Module Manager","Too many arguments",message)); return;}
-        if (args.length < 2) {message.channel.send(embed("Module Manager","Not enough arguments",message)); return;}
+        if (args.length > 2) {message.channel.send(sendnormal("Too many arguments",message)); return;}
+        if (args.length < 2) {message.channel.send(sendnormal("Not enough arguments",message)); return;}
         //  Load  //
         const modulename = args[1]
-        message.channel.send(embed("Module Manager",`Attempting to load **${modulename}**`,message))
+        message.channel.send(sendnormal(`Attempting to load **${modulename}**`,message))
         try {
             if (fs.existsSync(`./src/unloaded/${modulename}`)) {
                 //  If Module Exists  //
                 fs.rename(`./src/unloaded/${modulename}`, `./src/commands/${modulename}`, function(err) {
                     if (err) {
                       console.log(err)
-                      message.channel.send(embed(`Module Manager`,`Error Loading ${modulename}\n${err}`,message));
+                      message.channel.send(senderror(`Module Manager`,`Error Loading ${modulename}\n${err}`,message));
                     } else {
                         console.log(`Module Handler:    Loaded ${modulename}`);
-                        message.channel.send(new discord.MessageEmbed({color: '#99ff99', title: `Module Manager`, description: `Successfully Loaded **${modulename}**`})).then(restart());
+                        message.channel.send(sendconfirm(`Successfully Loaded **${modulename}**\n\nRestart for effects to take place.`));
                         
                     }
                   })
 
             } else {
-                confirmed.edit(new discord.MessageEmbed({color: '#ff5555', title: `Module Manager`, description: `Error Loading **${modulename}**\nModule doesn't exist or is already loaded`}));
+                confirmed.edit(senderror(`Error Loading **${modulename}**\nModule doesn't exist or is already loaded`));
             }
             } catch(err) {
-                message.channel.send(embed(`Module Manager`,`Error Loading ${modulename}\n${err}`,message));
+                message.channel.send(senderror(`Error Loading **${modulename}**\n${err}`));
         }
     ////////    End Load    ////////
 
@@ -128,7 +133,7 @@ module.exports = {
             .filter(dirent => dirent.isDirectory())
             .map(dirent => dirent.name)
 
-            message.channel.send(embed("Module Manager",`**Loaded:**\n${getDirectories('./src/commands')}\n\n**Unloaded:**\n${getDirectories('./src/unloaded')}`,message));
+            message.channel.send(sendnormal(`**Loaded:**\n${getDirectories('./src/commands')}\n\n**Unloaded:**\n${getDirectories('./src/unloaded')}`,message));
     ////////    End List    ////////
 
 
@@ -137,11 +142,11 @@ module.exports = {
     ////////    Unload    ////////
     } else if (args[0].toLowerCase() == "unload") {
         //  Check Args //
-        if (args.length > 2) {message.channel.send(embed("Module Manager","Too many arguments",message)); return;}
-        if (args.length < 2) {message.channel.send(embed("Module Manager","Not enough arguments",message)); return;}
+        if (args.length > 2) {message.channel.send(sendnormal("Too many arguments",message)); return;}
+        if (args.length < 2) {message.channel.send(sendnormal("Not enough arguments",message)); return;}
         //  Load  //
         const modulename = args[1]
-        message.channel.send(embed("Module Manager",`Attempting to unload **${modulename}**`,message))
+        message.channel.send(sendnormal(`Attempting to unload **${modulename}**`,message))
         
         if (modulename != "Owner") {
             try {
@@ -150,23 +155,21 @@ module.exports = {
                     fs.rename(`./src/commands/${modulename}`, `./src/unloaded/${modulename}`, function(err) {
                         if (err) {
                         console.log(err)
-                        message.channel.send(embed(`Module Manager`,`Error Unloading ${modulename}\n${err}`,message));
+                        message.channel.send(senderror(`Error Unloading ${modulename}\n${err}`,message));
                         } else {
-                            message.channel.send(new discord.MessageEmbed({color: '#99ff99', title: `Module Manager`, description: `Successfully Unloaded **${modulename}**`}));
+                            message.channel.send(sendconfirm(`Successfully Unloaded **${modulename}**\n\nRestart for effects to take place.`));
                             console.log(`Module Handler:    Unloaded ${modulename}`);
-                            restart();
-                            
                         }
                     })
 
                 } else {
-                    message.channel.send(new discord.MessageEmbed({color: '#ff5555', title: `Module Manager`, description: `Error Unloading **${modulename}**\nModule doesn't exist or isn't loaded`}));
+                    message.channel.send(senderror(`Error Unloading **${modulename}**\nModule doesn't exist or isn't loaded`));
                 }
                 } catch(err) {
-                    message.channel.send(embed(`Module Manager`,`Error Unloading ${modulename}\n${err}`,message));
+                    message.channel.send(senderror(`Error Unloading ${modulename}\n${err}`,message));
             }
         } else {
-            message.channel.send(embed(`Module Manager`,`Error Unloading ${modulename}\nThe Owner module cannot be unloaded.`,message));
+            message.channel.send(senderror(`Error Unloading ${modulename}\nThe Owner module cannot be unloaded.`,message));
         }
     ////////    End Unload    ////////
 
@@ -193,10 +196,23 @@ module.exports = {
 
         } else if (args[0].toLowerCase() == "remove") {
             //  Check Args //
-            if (args.length > 2) {message.channel.send(embed("Module Installer","Too many arguments",message)); return;}
-            if (args.length < 2) {message.channel.send(embed("Module Installer","Not enough arguments",message)); return;}
+            if (args.length > 2) {message.channel.send(sendnormal("Module Installer","Too many arguments",message)); return;}
+            if (args.length < 2) {message.channel.send(sendnormal("Module Installer","Not enough arguments",message)); return;}
             //  Uninstall  //
-            message.channel.send(embed("Module Manager","If you wish to remove an installed module, remove the folder via FTP or SSH.",message))
+            const modulename = args[1]
+            if (fs.existsSync(`./src/unloaded/${modulename}`)){
+                fs.rmdir(`./src/unloaded/${modulename}`, { recursive: true }, (err) => {
+                        if (err) {
+                            res.send(err);
+                            message.channel.send(senderror(`Error Removing ${modulename}\n${err}`));
+                            throw err;
+                        } else {
+                            message.channel.send(sendconfirm(`Removed ${modulename}`));
+                        }
+                    }
+            )} else {
+                message.channel.send(senderror(`Error Removing ${modulename}\nModule doesn't exist or is loaded.`));
+            }
         }
     }
 };
