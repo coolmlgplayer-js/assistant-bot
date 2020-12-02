@@ -1,5 +1,4 @@
 const fs = require("fs");
-const db = require("quick.db");
 function getDirectories(path) {
   return fs.readdirSync(path).filter(function (file) {
     return fs.statSync(path+'/'+file).isDirectory();

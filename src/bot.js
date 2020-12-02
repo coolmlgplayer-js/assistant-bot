@@ -1,4 +1,5 @@
-const { Client, Collection, MessageEmbed } = require("discord.js");
+const { Client, Collection, MessageEmbed } = require('discord.js');
+const fs = require('fs');
 const bot = new Client();
 var { token, owners, prefix } = process.env;
 owners = JSON.parse(owners);
@@ -50,6 +51,6 @@ bot.hasPermission = function(member,permission){
         return true;
 };
 
-["command","event"].forEach(x => require(`./handlers/${x}`)(bot));
+fs.readdirSync('./src/handlers').forEach(x => require(`./handlers/${x}`)(bot));
 
 bot.login(token);

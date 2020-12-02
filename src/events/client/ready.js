@@ -20,10 +20,10 @@ bot.user.setActivity(`${prefix}help`,{type: 'LISTENING'});
         });
     };
     bot.guilds.cache.map(guild => {
-        guild.members.fetch().catch(e => {
-            console.log(`Error fetching members for ${guild.name}\n${e}`).then(() => {
-            	console.log(`Guild Loaded: ${guild.name}`);
-            });
+        guild.members.fetch().then(members => {
+            console.log(`${guild.name}: Fetched ${members.size} members!`);
+        }).catch(() => {
+            console.log(`${guild.name}: Error fetching members!`);	
         });
     });
 };
