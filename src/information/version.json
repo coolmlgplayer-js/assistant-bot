@@ -1,4 +1,4 @@
 {
-    "version": "2.0",
-    "changelog": "Added tentacle command"
+    "version": "2.1",
+    "changelog": "Changed economy so that it has a wallet and bank :p"
 }
