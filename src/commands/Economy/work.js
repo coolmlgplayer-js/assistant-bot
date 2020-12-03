@@ -1,4 +1,5 @@
 const db = require('quick.db');
+const fs = require('fs');
 const { MessageEmbed, Collection } = require('discord.js');
 const currency = process.env.currency || 'KoolKoins';
 const defaultAmount = process.env.defaultAmount || 2500;
@@ -15,7 +16,11 @@ function addJob(name, minEarn, maxEarn, output, timeOut){
     });
 };
 
-addJob('beg',0,500,'You begged for **{coins}** {currency}', '10m');
+const files = fs.readdirSync(`${__dirname}/jobs`).filter(x => x.endsWith('.js'));
+for(var job of files){
+    job = require(`./jobs/${job}`);
+    addJob(job.name,job.minEarn,job.maxEarn,job.output,job.timeOut);
+};
 
 module.exports = {
     name: 'work',
