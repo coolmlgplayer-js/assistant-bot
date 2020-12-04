@@ -19,7 +19,7 @@ module.exports  = {
         if(!user) throw new Error('User not found!');
         if(user.bot) throw new Error('That user is a bot!');
         if(!db.has(`${user.id}.economy.bank`)) db.set(`${user.id}.economy.bank`,defaultAmount);
-        const walletBalance = db.get(`${user.id}.economy.wallet` || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        const walletBalance = (db.get(`${user.id}.economy.wallet`) || 0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         const bankBalance = (db.get(`${user.id}.economy.bank`)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         const bankMax = (db.get(`${user.id}.economy.maxBank`) || maxBank).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         const embed = new MessageEmbed({
