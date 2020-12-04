@@ -16,7 +16,7 @@ var periods = {
     } else if (diff > periods.month) {
       return Math.floor(diff / periods.month) + " month" + (Math.floor(diff / periods.month) > 1 ? 's' : '') + " ago";
     } else if (diff > periods.week) {
-        return Math.floor(diff / periods.week) + " weeks" + (Math.floor(diff / periods.week) > 1 ? 's' : '') + " ago";
+        return Math.floor(diff / periods.week) + " week" + (Math.floor(diff / periods.week) > 1 ? 's' : '') + " ago";
     } else if (diff > periods.day) {
         return Math.floor(diff / periods.day) + " day" + (Math.floor(diff / periods.day) > 1 ? 's' : '') + " ago";
     } else if (diff > periods.hour) {
