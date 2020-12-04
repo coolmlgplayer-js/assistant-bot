@@ -7,7 +7,7 @@ function newpage(title,link) {
   const currentDiv = document.getElementById("documents"); 
   currentDiv.after(text,); 
 }
-newpage("Download","download")
-newpage("Installing","install")
-newpage("Creating Commands","creatingcommands")
 newpage("Discord Server","https://discord.gg/RWn6Z9aVGj")
+newpage("Creating Commands","creatingcommands")
+newpage("Installing","install")
+newpage("Download","download")
