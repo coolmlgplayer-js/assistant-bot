@@ -1,8 +1,16 @@
 <!DOCTYPE html>
+
+<style>
+    .explainheader {
+        font-size: 35px;
+        padding-top: 100px;
+    }
+</style>
+
 <html>
     <head>
         <title>Install Instructions</title>
-    <link rel="shortcut icon" type="image/png" href="/assets/images/logo.jpg"/>
+        <link rel="shortcut icon" type="image/png" href="/assets/images/logo.jpg"/>
         <meta property="og:title" content="Assistant Bot V3.0" />
         <meta property="og:image" content="/assets/images/logo.jpg" />
         <meta property="og:description" content="Assistant Bot V3.0 is an open-source discord.js bot created by CoolMLGPlayer" />
@@ -35,24 +43,68 @@
             <p class="description">This page will guide you through setting up Assistant Bot V3</p>
             <hr>
 
-            <div class="warninghead">WARNING!</div>
-            <div class="warningbody">Do not install Assistant Bot V3 as a root or a sudo user for security reasons</div>
+            <div class="warninghead">NOTICE</div>
+            <div class="warningbody">Do not install Assistant Bot V3 as root/sudo/admin for security reasons</div>
             
-            <div class="infohead">REQUIREMENTS</div>
-            <div class="infobody"><ol><li>Node.js v12 or above</li><li>A brain that can follow the installation steps</li></ol></div>
+            <div class="infohead">Supported Operating Systems</div>
+            <div class="infobody">
+                <ul>
+                    <li><a style="color: black;" href="#windows">Windows 7,8,10 (Instructions coming soon)</a></li>
+                    <li><a style="color: black;" href="#fedora_centos_rhel">Fedora Linux</a></li>
+                    <li><a style="color: black;" href="#fedora_centos_rhel">CentOS</a></li>
+                    <li><a style="color: black;" href="#fedora_centos_rhel">Redhat Enterprise Linux</a></li>
+                    <li><a style="color: black;" href="#ubuntu">Ubuntu (Instructions coming soon)</a></li>
+                </ul>
+            </div>
+            
+
+
+
+
+
+
+
+
+
+
+            <!--   Windows   -->
+            <p class="explainheader" id="windows">Windows</p><hr>
+            <div class="errorhead">WARNING</div>
+            <div class="errorbody">The install process for Windows isn't documented yet. Proceed at your own risk.</div>
+
+
+            <!--   Fedora/Cent/RHEL   -->
+            <p class="explainheader" id="fedora_centos_rhel">Fedora / CentOS / RHEL</p><hr>
+            <p>The latest version of NodeJS isn't available from DNF or YUM. You can run the following shell script to install the latest version.</p>
+            <div class="codehead">Install NodeJS</div>
+            <div class="codebody">curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -</div>
+            <p>One of our dependencies, Quick.DB, has a few extra requirements for install. Download those using DNF. Git is also needed as it is how we download the bot from GitHub in the next step.</p>
+            <div class="codehead">Install Quick.DB Dependencies & Git</div>
+            <div class="codebody">sudo dnf install -y make automake gcc gcc-c++ kernel-devel git</div>
+            <p>Now, you're all set to install our bot!</p>
+            <div class="codehead">Download The Bot & Install NPM Dependencies</div>
+            <div class="codebody">cd $HOME && git clone https://github.com/coolmlgplayer-js/assistant-bot && cd assistant-bot && npm i --save</div>
+            <p>Congrats, you're all done! To run the bot, run the command below!</p>
+            <div class="codehead">Starting The Bot</div>
+            <div class="codebody">./launcher.sh</div>
+            
+
+            <!--   Ubuntu   -->
+            <p class="explainheader" id="ubuntu">Ubuntu</p><hr>
+            <div class="errorhead">WARNING</div>
+            <div class="errorbody">The install process for Ubuntu isn't documented yet. Proceed at your own risk.</div>
             
             
-            <p>
-            1. Run <span class="codesnip">npm i</span> in the command line while in the folder that you downloaded the bot in
-            <br><br>
-            2. Rename the <span class="codesnip">.env.example</span> file to <span class="codesnip">.env</span> and put in your token and preferences
-            <br><br>
-            3. For Windows users, launch <span class="codesnip">launcher.bat</span><br>For Linux users, start <span class="codesnip">launcher.sh</span>
-            <br><br>
-            4. The bot should update automatically by running the launcher
-            </p>
-            
-            
+
+
+
+
+
+
+
+
+
+
 
         </div>
         
