@@ -33,8 +33,8 @@ module.exports = {
             const job = jobs.get(args.join(' '));
             const { member } = message;
             if(!job) throw new Error('Invalid Job!');
-            if(!db.has(`${member.id}.economy.wallet`)) db.set(`${member.id}.economy.wallet`,defaultAmount);
-            if(!db.has(`${member.id}.economy.bank`)) db.set(`${member.id}.economy.bank`,0);
+            if(!db.has(`${member.id}.economy.bank`)) db.set(`${member.id}.economy.bank`,defaultAmount);
+            if(!db.has(`${member.id}.economy.wallet`)) db.set(`${member.id}.economy.wallet`,0);
             var hasAlreadyWorked = db.get(`${member.id}.economy.${job.name}`);
             if(hasAlreadyWorked && Date.now() >= hasAlreadyWorked){
                 hasAlreadyWorked = false;

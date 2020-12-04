@@ -15,8 +15,8 @@ module.exports = {
         var amount = args.join(' ').split(',').join('');
         if((isNaN(amount) || amount.includes('.') || parseInt(amount) < 0) && amount !== 'all') throw new Error('Invalid amount!');
         if(amount !== 'all') amount = parseInt(amount);
-        if(!db.has(`${member.id}.economy.wallet`)) db.set(`${member.id}.economy.wallet`,defaultAmount);
-        if(!db.has(`${member.id}.economy.bank`)) db.set(`${member.id}.economy.bank`,0);
+        if(!db.has(`${member.id}.economy.wallet`)) db.set(`${member.id}.economy.bank`,defaultAmount);
+        if(!db.has(`${member.id}.economy.wallet`)) db.set(`${member.id}.economy.wallet`,0);
         const walletBalance = db.get(`${member.id}.economy.wallet`);
         const bankBalance = db.get(`${member.id}.economy.bank`);
         const bankMax = db.get(`${member.id}.economy.maxBank`) || maxBank;

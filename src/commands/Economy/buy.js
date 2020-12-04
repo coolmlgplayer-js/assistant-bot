@@ -23,8 +23,8 @@ module.exports = {
         quantity = parseInt(quantity);
         price = price * quantity;
         const { member } = message;
-        if(!db.has(`${member.id}.economy.wallet`)) db.set(`${member.id}.economy.wallet`,defaultAmount);
-        if(!db.has(`${member.id}.economy.bank`)) db.set(`${member.id}.economy.bank`,0);
+        if(!db.has(`${member.id}.economy.bank`)) db.set(`${member.id}.economy.bank`,defaultAmount);
+        if(!db.has(`${member.id}.economy.wallet`)) db.set(`${member.id}.economy.wallet`,0);
         const walletBalance = db.get(`${member.id}.economy.wallet`);
         const bankBalance = db.get(`${member.id}.economy.bank`);
         const playerItems = db.get(`${member.id}.economy.items`) || [];

@@ -21,6 +21,7 @@ module.exports = {
         if(command.aliases) embed.addField("**Aliases**", command.aliases.join(", "));
         if(command.ownerOnly) command.permission = "Bot Owner";
         if(command.permission) embed.addField("**Permission**",command.permission);
+        if(command.cooldown) embed.addField("**Cooldown**",command.cooldown);
         if(command.arguments){
             if(command.arguments.required) embed.addField("**Required Arguments**","`" + command.arguments.required.join("`, `") + "`")
             if(command.arguments.optional) embed.addField("**Optional Arguments**","`" + command.arguments.optional.join("`, `") + "`")
