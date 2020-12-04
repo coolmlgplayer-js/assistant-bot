@@ -13,7 +13,7 @@ module.exports = {
     async execute(bot, message, args){
         const { member, guild } = message;
         const target = bot.User(args.join(' '),guild)[0];
-        if(!target || target.bot || target.id === member.id) throw new Error('Invalid User (You can\'t rob bots or yourself!');
+        if(!target || target.bot || target.id === member.id) throw new Error('Invalid User (You can\'t rob bots or yourself!)');
         if(!db.has(`${member.id}.economy.bank`)) db.set(`${member.id}.economy.bank`,defaultAmount);
         if(!db.has(`${member.id}.economy.wallet`)) db.set(`${member.id}.economy.wallet`,0);
         if(!db.has(`${target.id}.economy.bank`)) db.set(`${target.id}.economy.bank`,defaultAmount);
