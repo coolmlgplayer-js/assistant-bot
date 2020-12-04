@@ -46,7 +46,7 @@ module.exports = {
                 title: `List of ${category} commands`,
                 description: list.join("\n"),
                 footer: {
-                    text: `For more info about a command run ${prefix}info <Command>`
+                    text: `For more info about a command run ${prefix}help <Command>`
                 }
             });
             message.reply(embed);
