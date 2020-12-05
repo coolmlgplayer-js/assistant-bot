@@ -10,4 +10,3 @@ function newpage(title,link) {
 newpage("Discord Server","https://discord.gg/RWn6Z9aVGj")
 newpage("Creating Commands","creatingcommands")
 newpage("Installing","install")
-newpage("Download","download")
