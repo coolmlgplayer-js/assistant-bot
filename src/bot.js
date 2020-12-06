@@ -4,7 +4,6 @@ const bot = new Client();
 var { token, owners, prefix } = process.env;
 owners = JSON.parse(owners);
 bot.commands = new Collection();
-bot.shop = new Collection();
 bot.categories = [];
 bot.snipemsg = {};
 

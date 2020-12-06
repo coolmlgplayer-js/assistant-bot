@@ -10,7 +10,8 @@ module.exports = {
         if(args.length > 0){
             var category = args.join(" ");
             category = bot.categories.find(c => c.toLowerCase() === category.toLowerCase());
-            const command = bot.commands.get(args.join(" ")) || bot.commands.find(c => c.aliases && c.aliases.includes(args.join(" ")));
+            var command = bot.commands.get(args.join(" ")) || bot.commands.find(c => c.aliases && c.aliases.includes(args.join(" ")));
+            if(command && command.guild && command.guild != message.guild.id) command = undefined;
             if(command){
                 const embed = new MessageEmbed({
                     title: `**${command.name}**`,

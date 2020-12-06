@@ -18,9 +18,10 @@ module.exports = {
 		.addField("**Version**",version)
 		.addField("**Library**","discord.js v12")
 		.addField("**Creator**",author)
-                .addField("**Contributors**",contributorsArr.join("\n"))
+        .addField("**Contributors**",contributorsArr.join("\n"))
 		.addField("**License**",license)
 		.addField("**Servers**",bot.guilds.cache.array().length);
+		if(process.env.support) embed.addField("**Support**",process.env.support);
 		message.reply(embed);
 	}
 };
