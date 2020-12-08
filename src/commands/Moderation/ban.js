@@ -16,7 +16,7 @@ module.exports = {
         if(reason.length < 1) reason = `Banned by: ${member.user.tag}`;
         if(!user) throw new Error("Invalid User");
         user = message.guild.member(user);
-        if(user.roles.highest.position >= member.roles.highest.position) throw new Error("You cannot ban that member!");
+        if((member.id !== member.guild.ownerID) && user.roles.highest.position >= member.roles.highest.position) throw new Error("You cannot ban that member!");
         if(!user.bannable) throw new Error(`I cannot ban that member!`);
         user.ban({reason: reason}).then(() => {
             message.channel.send(`Banned: ${user.user.tag}`);

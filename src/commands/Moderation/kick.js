@@ -16,7 +16,7 @@ module.exports = {
         if(reason.length < 1) reason = `Kicked by: ${member.user.tag}`;
         if(!user) throw new Error("Invalid User");
         user = message.guild.member(user);
-        if(user.roles.highest.position >= member.roles.highest.position) throw new Error("You cannot kick that member!");
+        if((member.id !== member.guild.ownerID) && user.roles.highest.position >= member.roles.highest.position) throw new Error("You cannot kick that member!");
         if(!user.kickable) throw new Error(`I cannot kick that member!`);
         user.kick(reason).then(() => {
             message.channel.send(`Kicked: ${user.user.tag}`);
