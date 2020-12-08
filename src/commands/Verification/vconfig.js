@@ -22,7 +22,10 @@ module.exports = {
         if(args.length < 1){
             const embed = new MessageEmbed({
                 color: guild.me.roles.color ? guild.me.roles.color.hexColor : guild.me.roles.highest.hexColor,
-                title: '**Verification Configuration**'
+                title: '**Verification Configuration**',
+                footer: {
+                	text: `${prefix}vconfig <Setting> <Value>`
+                }
             });
             subCommands.map(subCmd => {
                 var value = db.get(`${guild.id}.${subCmd.name.toLowerCase()}`) || 'None';
