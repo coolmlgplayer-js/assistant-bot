@@ -33,6 +33,7 @@ bot.User = function(i,guild){
 
 
 bot.hasPermission = function(member,permission){
+	if(member.id === member.guild.ownerID) return true;
 	var bitPerm = "no";
         try{
             bitPerm = member.hasPermission((typeof permission === "string") ? permission.split(" ").join("_").toUpperCase() : permission);
