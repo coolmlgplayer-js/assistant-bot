@@ -22,6 +22,7 @@ module.exports = {
 		.addField("**License**",license)
 		.addField("**Servers**",bot.guilds.cache.array().length);
 		if(process.env.support) embed.addField("**Support**",process.env.support);
+		if(process.env.website) embed.setFooter(`Website | ${process.env.website}`);
 		message.reply(embed);
 	}
 };
