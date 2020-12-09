@@ -94,18 +94,20 @@ function sendCaptcha(member,message) {
                         let roleId = db.get(`${member.guild.id}.role`);
                         if(roleId && roleId.id) roleId = roleId.id;
                         if (!member.roles.cache.has(roleId)) { 
-                            member.roles.add(roleId);
-                        }
-                        
-                        let welcomeDescription = db.get(`${member.guild.id}.description`) || `Welcome to **${member.guild.name}**!`
-
-                        const successVerified = new MessageEmbed()
-                            .setAuthor(`Verification Successful!`)
-                            .setDescription(welcomeDescription)
-                            .setFooter(`Verification`)
-                            .setTimestamp()
-                        
-                        member.user.send(successVerified)
+                            member.roles.add(roleId).then(() => {
+                                let welcomeDescription = db.get(`${member.guild.id}.description`) || `Welcome to **${member.guild.name}**!`
+                                const successVerified = new MessageEmbed()
+                    	        .setAuthor(`Verification Successful!`)
+                                .setDescription(welcomeDescription)
+                                .setFooter(`Verification`)
+                                .setTimestamp()
+								member.send(successVerified);
+                            }).catch(() => {
+								const role = member.guild.roles.cache.get(roleId);
+								const roleString = role ? `@${role.name}` : 'Unknown';
+								member.send(`I couldn't give you the \`${roleString}\` role, please contact a server administrator for help.`)
+							});
+                        };
                     }
                 }); 
 
