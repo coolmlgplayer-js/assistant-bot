@@ -6,7 +6,7 @@ module.exports = {
 	async execute(bot, message, args){
 		const m = await message.channel.send("Generating invite...");
 		const invite = await bot.generateInvite({
-			permissions: 8
+			permissions: 27670
 		});
 		m.edit("Invite Generated",new MessageEmbed({
 			color: message.guild.me.roles.color ? message.guild.me.roles.color.hexColor : message.guild.me.roles.highest.hexColor,
