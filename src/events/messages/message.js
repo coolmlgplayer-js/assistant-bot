@@ -37,7 +37,7 @@ module.exports = async (bot, message) => {
         color: "ff5555",
         title: "This command is for my owners only!"
     }));
-    if(command.permission && !owners.includes(message.member.id)){
+    if(command.permission){
         var hasPerm = bot.hasPermission(message.member,command.permission);
         if(hasPerm !== true) return message.reply(hasPerm);
     };
