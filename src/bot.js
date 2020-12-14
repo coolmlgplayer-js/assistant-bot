@@ -45,7 +45,7 @@ bot.hasPermission = function(member,permission){
             title: "Missing Permission",
             description: `You are missing the \`${permission}\` permission!`
         });
-        if(!member.hasPermission('MANAGE_SERVER') && !member.roles.cache.some(r => r.name === permission)) return new MessageEmbed({
+        if(!member.hasPermission('MANAGE_GUILD') && !member.roles.cache.some(r => r.name === permission)) return new MessageEmbed({
             color: "ff5555",
             title: "Missing Role",
             description: `You are missing the \`${permission}\` role!`
